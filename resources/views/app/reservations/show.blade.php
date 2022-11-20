@@ -1,0 +1,48 @@
+@extends('layouts.app')
+
+@section('content')
+<div class="container">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">
+                <a href="{{ route('reservations.index') }}" class="mr-4"
+                    ><i class="icon ion-md-arrow-back"></i
+                ></a>
+                @lang('crud.reservations.show_title')
+            </h4>
+
+            <div class="mt-4">
+                <div class="mb-4">
+                    <h5>@lang('crud.reservations.inputs.salle_id')</h5>
+                    <span>{{ optional($reservation->salle)->nom ?? '-' }}</span>
+                </div>
+                <div class="mb-4">
+                    <h5>@lang('crud.reservations.inputs.classe_id')</h5>
+                    <span
+                        >{{ optional($reservation->classe)->nom ?? '-' }}</span
+                    >
+                </div>
+            </div>
+
+            <div class="mt-4">
+                <a
+                    href="{{ route('reservations.index') }}"
+                    class="btn btn-light"
+                >
+                    <i class="icon ion-md-return-left"></i>
+                    @lang('crud.common.back')
+                </a>
+
+                @can('create', App\Models\Reservation::class)
+                <a
+                    href="{{ route('reservations.create') }}"
+                    class="btn btn-light"
+                >
+                    <i class="icon ion-md-add"></i> @lang('crud.common.create')
+                </a>
+                @endcan
+            </div>
+        </div>
+    </div>
+</div>
+@endsection
